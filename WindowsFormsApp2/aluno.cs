@@ -18,8 +18,9 @@ namespace WindowsFormsApp2
 
         public double calcmendia()
         {
-            this.media= this.n1 + this.n2 + this.n3 + this.n4 ;
+            this.media= (this.n1 + this.n2 + this.n3 + this.n4 ) / 4;
             return media;
         }
     }
 }
+ 
