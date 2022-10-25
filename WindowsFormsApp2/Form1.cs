@@ -21,42 +21,50 @@ namespace WindowsFormsApp2
 
         private void Btnexe_Click(object sender, EventArgs e)
         {
-     
+
             aluno Aluno = new aluno();
-            Aluno.nome = txtnome.Text;
-            Aluno.rm = txtRM.Text;
+            
+            Aluno.nome = txtnome.Text; 
             Aluno.n1 = Convert.ToInt32(txtn1.Text);
             Aluno.n2 = Convert.ToInt32(txtn2.Text);
-            Aluno.n3 = Convert.ToInt32(txtn3.Text); 
+            Aluno.n3 = Convert.ToInt32(txtn3.Text);
             Aluno.n4 = Convert.ToInt32(txtn4.Text);
 
             Aluno.calcmendia();
+            Aluno.Defsituacao();
 
 
             bool clone = false;
             foreach (aluno p in lista)
             {
-                if (p.nome ==Aluno.rm)
+                if (p.rm == Aluno.rm)
                 {
                     clone = true;
                 }
             }
             if (!clone)
             {
-            txt1.Text = Aluno.nome;
-            txt2.Text = Aluno.rm;
-            txt3.Text = txtn1.Text; 
-            txt4.Text = txtn2.Text; 
-            txt5.Text = txtn3.Text; 
-            txt6.Text = txtn4.Text;
-            txtmedia.Text = Convert.ToString(Aluno.media);
+      
+
                 lista.Add(Aluno);
                 MessageBox.Show("cadastro feito");
-            }
+                DataGridView.Rows.Add(Aluno.nome, Aluno.n1, Aluno.n2, Aluno.n3, Aluno.n4, Aluno.media, Aluno.situ);
+                txtnome.Clear();
+                txtRM.Clear();
+                txtn1.Clear();
+                txtn2.Clear();
+                txtn3.Clear();
+                txtn4.Clear();
+            }    
             else
             {
                 MessageBox.Show("codigo ja existente");
                 txtnome.Clear();
+                txtRM.Clear();
+                txtn1.Clear();
+                txtn2.Clear();
+                txtn3.Clear();
+                txtn4.Clear();
             }
 
         }
@@ -64,6 +72,17 @@ namespace WindowsFormsApp2
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void Btndelet_Click(object sender, EventArgs e)
+        {
+            aluno Aluno = new aluno();
+            Aluno.rm = txtRM.Text;
+            if (Aluno.rm == txtRM.Text)
+            {
+                lista.Clear();
+            }
         }
     }
 }
